@@ -90,3 +90,9 @@ Keep engineering scaffolding cleanly separated from application source code:
 1. Push this repository to your personal GitHub account (`main` branch).
 2. Open **Settings → General** on GitHub.
 3. Check **Template repository** so every future project starts cleanly via **Use this template**.
+
+---
+
+## License
+
+[MIT](./LICENSE)
