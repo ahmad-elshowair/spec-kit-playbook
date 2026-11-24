@@ -1,0 +1,23 @@
+# OS & editor noise
+.DS_Store
+._*
+Thumbs.db
+*.swp
+*.swo
+*.tmp
+
+# Local environment & secrets (never commit credentials)
+.env
+.env.*
+!.env.example
+
+# Local generated analysis & visualization caches
+floorplan/
+graphify-out/
+.archify/
+
+# Optional: Uncomment if you generate feature playbooks or local Spec-Kit artifacts
+# inside this repo instead of keeping them strictly personal or in a sibling folder.
+# playbooks/
+# .specify/
+# specs/
