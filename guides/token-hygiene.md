@@ -13,12 +13,16 @@ Never run Steps `1 → 9` inside one giant chat thread. Every new turn re-sends 
 
 ---
 
-## 2. Cap Loaded Skills (`≤ 3` per Turn)
+## 2. Apply the 3-Question Skill Admission Filter (`Policy WHAT` vs. `Playbook HOW`)
 
-Loading 8–10 skills simultaneously injects thousands of system tokens into every turn of a long coding loop and distracts the model.
+Loading 8–10 skills simultaneously injects thousands of system tokens into every turn of a long coding loop and dilutes instruction focus. Instead of stuffing prompts, admit a skill **if and only if** it passes all three checks in [skills-catalog.md](../skills-catalog.md):
 
-- Keep **Layer 1 (Universal Core)** lean (`0–3` skills per step).
-- Attach **Layer 2 (App-Type Packs)** only to the specific Step 8 phase that touches that layer (see [skills-catalog.md](../skills-catalog.md)).
+1. Not already enforced by `constitution.md` (`Policy WHAT`) or deterministic CI.
+2. Not overlapping another loaded skill in that step/phase.
+3. Needed for deep procedural `HOW` or framework-specific patterns in **this exact phase**.
+
+- Default to a soft cap of **`≤ 3` heavy domain skills** per step/phase (`4` is fine when every skill is strictly orthogonal; tiny ~40-line style/commit skills barely count).
+- Needing **`5+` skills** in one Step 8 phase is a Single-Responsibility signal to **split the phase** rather than overload one prompt.
 
 ---
 
@@ -40,8 +44,8 @@ Run deterministic gates **first**, then paste only concise failing outputs into 
   1. Step 3 (`/speckit-clarify`)
   2. Step 5 (`/speckit-plan`)
   3. Step 8D (`2-Strike Rescue`) and Step 9A (`Security/Auth Diff Review`)
-- Use **`Low` / `Fast`** (`Gemini Flash` / `GLM-5.3`) for mechanical steps (`4 Checklist`, `6 Tasks`, tracker updates).
-- **2-Strike Escalation Rule:** If a Step 8 builder (`GLM-5.4`/`5.3` or `Orchestrator`) fails the same test or bug twice, stop burning tokens in retry loops — hand the exact failing output + diff to `Claude Opus 5.5 (XHigh/Max)` for **1 diagnostic turn**, apply the fix, then drop back down.
+- Use **`Low` / `Fast`** (`T4 Clerk` in [ai-roster.md](../ai-roster.md)) for mechanical steps (`4 Checklist`, `6 Tasks`, tracker updates).
+- **2-Strike Escalation Rule:** If a `T3 Builder` fails the same test or bug twice, stop burning tokens in retry loops — hand the exact failing output + diff to your `T1 Rescue` model in [ai-roster.md](../ai-roster.md) for **1 diagnostic turn**, apply the fix, then drop back down.
 
 ---
 
@@ -50,5 +54,5 @@ Run deterministic gates **first**, then paste only concise failing outputs into 
 Every feature playbook ends with a **Cost & Rework Telemetry Log** (`Step | Tool / Model Used | Effort | Turns / Notes | Rework Needed?`).
 
 After shipping **3–5 features**, review the log:
-- If a `Low`/`T4` or `T3` model caused rework on a specific step → bump that step's tier or effort in [ai-roster.md](../ai-roster.md).
+- If a `T4` or `T3` model caused rework on a specific step → bump that step's tier or effort in [ai-roster.md](../ai-roster.md).
 - If a `High`/`XHigh` step consistently finished in 1 clean turn with zero rework → try stepping effort down one notch to preserve quota.

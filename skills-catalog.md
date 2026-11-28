@@ -1,8 +1,20 @@
 # Two-Layer Skills Catalog
 
-> **Golden Budget Rule:** Load **at most 2–3 skills per step or Step 8 phase**. Injecting 8–10 skills into every turn wastes system tokens and dilutes focus.
+> **Golden Budget Rule:** Default budget is **≤ 3 heavy domain skills per step or Step 8 phase**, governed by the **3-Question Skill Admission Filter** below. Injecting 8–10 skills into every turn wastes system tokens and dilutes focus.
 
 Split skills into **Layer 1 (Universal Core)** used across all projects and **Layer 2 (App-Type Packs)** toggled on once in `project-context.md` and attached **only** to the phase that touches that layer.
+
+---
+
+## The 3-Question Skill Admission Filter (`Policy WHAT` vs. `Playbook HOW`)
+
+Treat `constitution.md` as **Layer 0** (always-on policy — **WHAT** must hold). Before adding any skill to a step or Step 8 phase, add it **if and only if**:
+
+1. **Not enforced by Constitution or deterministic CI** (`tsc`, `eslint`, `vitest`, `axe`, `prettier`) — skip skills that only repeat an existing invariant.
+2. **Not overlapping another loaded skill** in that step or phase — pick one reviewer or design skill, never stack duplicates.
+3. **Needed for deep procedural `HOW` or framework-specific patterns in *this exact phase*** — e.g., Article IV mandates WCAG 2.1 AA (**WHAT**), so skip `accessibility` in Step 6 (`Tasks`), but load it in Step 8 UI (**HOW**).
+
+> **Soft Guardrail Note:** Default to `≤ 3` heavy domain skills per step/phase. Loading `4` is fine when every skill is strictly orthogonal (and tiny ~40-line style/commit skills like `caveman-commit` barely count); needing `5+` is a Single-Responsibility signal to **split the phase** rather than stuff the prompt.
 
 ---
 
